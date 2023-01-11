@@ -9,10 +9,6 @@ function App(props) {
 
   const {loading, error} = props
 
-  if (error !== '') {
-    return<h3 className='ErrorMessage'>{error}</h3>
-  }
-
   return (
     <div className="App">
       <h1>Search for Gifs</h1>
@@ -23,8 +19,13 @@ function App(props) {
       </form>
 
       {
+        (error !== '') && <h3>{error}</h3>
+      }
+
+      {
         loading ? <h3 className='Loading_Screen'>We are loading</h3> : <GifList />
       }
+
     </div>
   );
 }
