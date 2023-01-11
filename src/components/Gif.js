@@ -11,6 +11,7 @@ const Gif = (props) => {
         <img width='200' src={gif.images.original.url}/>
         <p>Rating: <strong>{gif.rating}</strong></p>
         <a target='_blank' href={gif.url}><button>Check it out on giphy</button></a>
+        
 
 
 

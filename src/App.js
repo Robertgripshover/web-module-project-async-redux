@@ -2,14 +2,16 @@ import React from 'react';
 import './App.css';
 import {connect} from 'react-redux';
 import GifList from './components/GifList'
-import data from './data/gifs'
+
+import reducer from './reducer';
 
 function App(props) {
 
-  const gifs = data
-  const loading = false
-  const error = ''
+  const {loading, error} = props
 
+  if (error !== '') {
+    return<h3 className='ErrorMessage'>{error}</h3>
+  }
 
   return (
     <div className="App">
@@ -21,10 +23,17 @@ function App(props) {
       </form>
 
       {
-        loading ? <h3>We are loading</h3> : <GifList gifs={gifs}/>
+        loading ? <h3 className='Loading_Screen'>We are loading</h3> : <GifList />
       }
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    loading: state.loading,
+    error: state.error
+  }
+}
+
+export default connect(mapStateToProps)(App);
